@@ -49,6 +49,8 @@ namespace To_do_List
                 }
             }
         }
+
+        public int Id { get; set; }
         
         //Method to invoke the event with a safety check
         protected void OnPropertyChanged(string propertyName)
