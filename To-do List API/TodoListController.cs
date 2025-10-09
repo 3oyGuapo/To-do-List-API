@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Todo.Shared;
 
 namespace To_do_List
 {
@@ -14,7 +15,7 @@ namespace To_do_List
         private const string filePath = "To-do List.txt";
         
         //Define a new List as ObservableCollection to store ListContent, private set to restrict only member in current class can assign new values to Lists
-        public ObservableCollection<ListContent> Lists { get; private set; }
+        public ObservableCollection<TaskItem> Lists { get; private set; }
 
         //Constructor that initialize the Lists by calling LoadListsFromFile to get a list
         public TodoListController()
@@ -31,10 +32,10 @@ namespace To_do_List
         }
 
         //Private method that load todo list from the file path given, only execute when the object is initialized
-        private ObservableCollection<ListContent> LoadListsFromFile()
+        private ObservableCollection<TaskItem> LoadListsFromFile()
         {
             //Object that stores the contents from the filepath given if exist
-            var lists = new ObservableCollection<ListContent>();//use var to shorten the length
+            var lists = new ObservableCollection<TaskItem>();//use var to shorten the length
 
             //Check the file exists
             if (File.Exists(filePath))
@@ -52,7 +53,7 @@ namespace To_do_List
                     if (parts.Length == 2 && bool.TryParse(parts[0], out bool isCompleted))
                     {
                         //Initialize the listcontent by adding the second element in constructor to initialize and define IsCompleted property with the parsed bool value
-                        var loadedList = new ListContent(parts[1]) {IsCompleted = isCompleted};
+                        var loadedList = new TaskItem(parts[1]) {IsCompleted = isCompleted};
                         lists.Add(loadedList);//Add to the list
                     }
                 }
@@ -62,7 +63,7 @@ namespace To_do_List
         }
 
         //Add method that adds the new content into the Lists and perform a save
-        public void AddList(ListContent newList)
+        public void AddList(TaskItem newList)
         {
             if (!string.IsNullOrEmpty(newList.Description) && !string.IsNullOrWhiteSpace(newList.Description))
             {
@@ -73,7 +74,7 @@ namespace To_do_List
         }
 
         //Delete method that removes the new content into the Lists and perform a save
-        public void DeleteList(ListContent deleteList)
+        public void DeleteList(TaskItem deleteList)
         {
             Lists.Remove(deleteList);
             SaveListsToFile();

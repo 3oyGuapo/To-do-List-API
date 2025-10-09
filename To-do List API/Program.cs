@@ -1,4 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using To_do_List_API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//1. Get connection string from the appsettings.json file
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+//Add database context to builder's service.
+builder.Services.AddDbContext<TodoDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // Add services to the container.
 

@@ -5,22 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace To_do_List
+
+namespace Todo.Shared//A project that shares the classes between different projects
 {
-    public class ListContent : INotifyPropertyChanged
+    /// <summary>
+    /// Class that define the data structures stored in the todo list
+    /// </summary>
+    public class TaskItem : INotifyPropertyChanged
     {
         //Declare a propertychanged event to notify the changes of property
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;//? define it is a nullable type
         //Declare private fields to store the value
-        private string _description;
+        private string _description = string.Empty;
         private bool _isCompleted;
 
         //Constructor to initialize the fields
-        public ListContent(string description)
+        public TaskItem(string description)
         {
             _description = description;
             _isCompleted = false;
         }
+
+        public TaskItem() { }
 
         //Description property to encapsulate the field
         public string Description
@@ -51,7 +57,7 @@ namespace To_do_List
         }
 
         public int Id { get; set; }
-        
+
         //Method to invoke the event with a safety check
         protected void OnPropertyChanged(string propertyName)
         {
