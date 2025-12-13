@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Shared", "Todo.Shared\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Tests", "TodoAPI.Tests\TodoApi.Tests.csproj", "{DCA3B8F9-706E-4733-8578-212E46C11D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "To-do List Desktop", "..\To-do List Desktop\To-do List Desktop\To-do List Desktop.csproj", "{96C325DE-C992-95C7-B1E9-2E8E9D2CC014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "To-do List Desktop", "To-do List Desktop\To-do List Desktop.csproj", "{5B278935-376D-CBDD-E090-FBFCCF85D8B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{DCA3B8F9-706E-4733-8578-212E46C11D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA3B8F9-706E-4733-8578-212E46C11D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA3B8F9-706E-4733-8578-212E46C11D1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96C325DE-C992-95C7-B1E9-2E8E9D2CC014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96C325DE-C992-95C7-B1E9-2E8E9D2CC014}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96C325DE-C992-95C7-B1E9-2E8E9D2CC014}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96C325DE-C992-95C7-B1E9-2E8E9D2CC014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B278935-376D-CBDD-E090-FBFCCF85D8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B278935-376D-CBDD-E090-FBFCCF85D8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B278935-376D-CBDD-E090-FBFCCF85D8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B278935-376D-CBDD-E090-FBFCCF85D8B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

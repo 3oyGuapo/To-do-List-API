@@ -1,0 +1,36 @@
+﻿<Window x:Class="To_do_List_Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:To_do_List_Desktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Closing="MainWindow_Closing" Loaded="Window_Loaded">
+        
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="To-do List" FontWeight="Bold" Margin="0,0,0,5" />
+        <ListBox x:Name="todoListBox" Grid.Row="1" Margin="0,0,0,10" ItemsSource="{Binding Lists}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsCompleted}" VerticalAlignment="Center" Click="CheckBox_Click"/>
+                        <TextBlock Text="{Binding Description}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBox x:Name="inputTextBox" Grid.Row="2"></TextBox>
+        <Button Click="Button_Click" Grid.Row="3" Margin="0,5,0,0">Add new list</Button>
+        <Button Click="DeleteButton_Click" Content="Delete selected list" Grid.Row="4" Margin="0,5,0,0"></Button>
+
+    </Grid>
+</Window>
