@@ -14,10 +14,10 @@ This To-do List Application is a desktop and backend app use for managing person
 ## Tech Stack
 
 *   **Backend**: C#, .NET 8, ASP.NET Core Web API
-*   **Frontend**: WPF (Windows Presentation Foundation), XAML
+*   **Frontend**: WPF 
 *   **Database**: PostgreSQL
 *   **ORM**: Entity Framework Core
-*   **Testing**: xUnit, Moq
+*   **Testing**: xUnit
 *   **Tools**: Visual Studio 2022, Swagger/OpenAPI
 
 ## Getting Started
@@ -49,7 +49,7 @@ Follow these steps to get the project running on your local machine.
 3.  **Run the Backend (API)**
     *   Open the solution in Visual Studio.
     *   Set `TodoApi` as the startup project (or use Multiple Startup Projects).
-    *   Run the project. Swagger UI should appear at `https://localhost:7123` (check your port).
+    *   Run the project. 
 
 4.  **Run the Client (WPF)**
     *   Ensure the API is running.
