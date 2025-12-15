@@ -53,7 +53,7 @@ namespace To_do_List_API.Controllers
         }
 
         /// <summary>
-        /// Create a list
+        /// Create a task
         /// </summary>
         /// <param name="newContent"></param>
         /// <returns></returns>
@@ -64,10 +64,12 @@ namespace To_do_List_API.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var newTask = new TaskItem
             {
                 Description = taskDto.Description,
-                IsCompleted = taskDto.IsCompleted
+                IsCompleted = taskDto.IsCompleted,
+                Priority = taskDto.Priority
             };
 
             //Use addList function to add new content as new list
@@ -80,7 +82,7 @@ namespace To_do_List_API.Controllers
         }
 
         /// <summary>
-        /// Update a list by given id
+        /// Update a task by given id
         /// </summary>
         /// <param name="id"></param>
         /// <param name="updatedList"></param>

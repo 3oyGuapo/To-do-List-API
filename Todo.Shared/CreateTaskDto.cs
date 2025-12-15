@@ -14,5 +14,7 @@ namespace Todo.Shared
         public string Description { get; set; } = string.Empty;
 
         public bool IsCompleted { get; set; } = false;
+
+        public string Priority { get; set; } = "Medium";
     }
 }
