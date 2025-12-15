@@ -17,19 +17,41 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
+        
         <TextBlock Grid.Row="0" Text="To-do List" FontWeight="Bold" Margin="0,0,0,5" />
-        <ListBox x:Name="todoListBox" Grid.Row="1" Margin="0,0,0,10" ItemsSource="{Binding Lists}">
+        
+        
+        <ListBox x:Name="todoListBox" Grid.Row="1" Margin="0,0,0,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
+                    
                     <StackPanel Orientation="Horizontal">
+                        
+                        <TextBlock Text="{Binding Priority}" FontWeight="Bold" Margin="0,0,10,0" VerticalAlignment="Center" />
                         <CheckBox IsChecked="{Binding IsCompleted}" VerticalAlignment="Center" Click="CheckBox_Click"/>
                         <TextBlock Text="{Binding Description}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        
                     </StackPanel>
+                    
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBox x:Name="inputTextBox" Grid.Row="2"></TextBox>
+
+        <DockPanel Grid.Row="2" Margin="0,5" LastChildFill="True">
+
+            <ComboBox DockPanel.Dock="Left" x:Name="priorityComboBox" Width="80" SelectedIndex="1" VerticalContentAlignment="Center" Margin="0,0,5,0">
+                <ComboBoxItem Content="High"/>
+                <ComboBoxItem Content="Meidum"/>
+                <ComboBoxItem Content="Low"/>
+            </ComboBox>
+
+            <TextBox x:Name="inputTextBox" VerticalContentAlignment="Center"/>
+
+        </DockPanel>
+
+        
         <Button Click="Button_Click" Grid.Row="3" Margin="0,5,0,0">Add new list</Button>
+        
         <Button Click="DeleteButton_Click" Content="Delete selected list" Grid.Row="4" Margin="0,5,0,0"></Button>
 
     </Grid>

@@ -38,7 +38,10 @@ namespace To_do_List_Desktop
         {
             var tasksFromServer = await _apiService.GetAllTasksAsync();
             Tasks.Clear();
-            foreach (var task in tasksFromServer)
+
+            var sortedTasks = tasksFromServer.OrderByDescending(tasks => tasks.PriorityValue);
+
+            foreach (var task in sortedTasks)
             {
                 Tasks.Add(task);
             }
@@ -54,7 +57,11 @@ namespace To_do_List_Desktop
             //Check the description is not null or whitespace
             if (!string.IsNullOrWhiteSpace(inputTextBox.Text))
             {
-                var newTaskDto = new CreateTaskDto { Description = inputTextBox.Text };
+                var newTaskDto = new CreateTaskDto 
+                { 
+                    Description = inputTextBox.Text,//Assign value based on the textbox's text
+                    Priority = priorityComboBox.Text//Assign value based on the text of selected index of combo box
+                };
 
                 var createdTask = await _apiService.CreateTaskAsync(newTaskDto);
 
@@ -100,5 +107,7 @@ namespace To_do_List_Desktop
                 await _apiService.UpdateTaskAsync(taskToUpdate);
             }
         }
+
+        
     }
 }

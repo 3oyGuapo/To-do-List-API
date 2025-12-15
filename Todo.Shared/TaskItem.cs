@@ -87,5 +87,19 @@ namespace Todo.Shared//A project that shares the classes between different proje
         {
             return Description;
         }
+
+        public int PriorityValue
+        {
+            get
+            {
+                switch (Priority)
+                {
+                    case "High": return 3;
+                    case "Medium": return 2;
+                    case "Low": return 1;
+                    default: return 0;
+                }
+            }
+        }
     }
 }
