@@ -12,7 +12,7 @@ namespace To_do_List_Desktop
     internal class TodoApiService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://localhost:7089";//Need to replace
+        private const string BaseUrl = "https://localhost:7089";//Need to replace with your url
 
         public TodoApiService()
         {
@@ -43,7 +43,7 @@ namespace To_do_List_Desktop
 
         public async Task UpdateTaskAsync(TaskItem taskToUpdate)
         {
-            HttpResponseMessage response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/api/tasks", taskToUpdate);
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/api/tasks/{taskToUpdate.Id}", taskToUpdate);
             response.EnsureSuccessStatusCode();
         }
 
