@@ -20,7 +20,7 @@ namespace To_do_List_Desktop
     public partial class MainWindow : Window
     {
         private readonly TodoApiService _apiService;
-        public ObservableCollection<TaskItem> Tasks { get; set; }
+        public ObservableCollection<TaskItem> Tasks { get; set; }//Define a ObservableCollection list to store the values
 
         public MainWindow()
         {
@@ -29,8 +29,9 @@ namespace To_do_List_Desktop
             _apiService = new TodoApiService();
             Tasks = new ObservableCollection<TaskItem>();
 
-            todoListBox.ItemsSource = Tasks;
+            todoListBox.ItemsSource = Tasks;//Binding todoListBox with Tasks
 
+            //Loading event
             this.Loaded += Window_Loaded;
         }
 
@@ -39,6 +40,7 @@ namespace To_do_List_Desktop
             var tasksFromServer = await _apiService.GetAllTasksAsync();
             Tasks.Clear();
 
+            //When loading, order tasks in desending order by their priority value
             var sortedTasks = tasksFromServer.OrderByDescending(tasks => tasks.PriorityValue);
 
             foreach (var task in sortedTasks)
@@ -48,7 +50,7 @@ namespace To_do_List_Desktop
         }
 
         /// <summary>
-        /// Add task button
+        /// Add task button where a new task will be added to the database and show on the WPF app
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,19 +59,41 @@ namespace To_do_List_Desktop
             //Check the description is not null or whitespace
             if (!string.IsNullOrWhiteSpace(inputTextBox.Text))
             {
+                //New variable based on the input
                 var newTaskDto = new CreateTaskDto 
                 { 
                     Description = inputTextBox.Text,//Assign value based on the textbox's text
                     Priority = priorityComboBox.Text//Assign value based on the text of selected index of combo box
                 };
 
+                //Send to api and get a new data back
                 var createdTask = await _apiService.CreateTaskAsync(newTaskDto);
 
-                if (createdTask != null)
+                //Adding new task in order of priority
+                //Get value of newly created task
+                int createdTaskPriorityValue = createdTask.PriorityValue;
+                //Set default to false for not inserted yet
+                bool inserted = false;
+
+                //Iterate over the Tasks list to find any preivous values is smaller than the new one
+                for (int i = 0; i < Tasks.Count; i++)
+                {
+                    //Find and insert in that index and mark as inserted true
+                    if (Tasks[i].PriorityValue < createdTaskPriorityValue)
+                    {
+                        Tasks.Insert(i, createdTask);
+                        inserted = true;
+                        break;
+                    }
+                }
+
+                //If not been inserted then add to the back of list
+                if (!inserted)
                 {
                     Tasks.Add(createdTask);
                 }
-                inputTextBox.Text = "";
+
+                //inputTextBox.Text = "";
             }
             
         }
@@ -100,11 +124,17 @@ namespace To_do_List_Desktop
             await LoadTasks();
         }
 
+        /// <summary>
+        /// CheckBox click event which informs api to update the database when the IsCompleted status of a task on the WPF app changes by user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void CheckBox_Click(object sender, RoutedEventArgs e)
         {
+            //Check that the sender is TaskItem
             if (((FrameworkElement)sender).DataContext is TaskItem taskToUpdate)
             {
-                await _apiService.UpdateTaskAsync(taskToUpdate);
+                await _apiService.UpdateTaskAsync(taskToUpdate);//Calls method to update
             }
         }
 

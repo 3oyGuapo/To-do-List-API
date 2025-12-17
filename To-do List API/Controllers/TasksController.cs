@@ -25,8 +25,9 @@ namespace To_do_List_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
         {
-            //Return the Lists
+            //await here for async method to wait for this task complete before return
             var tasks = await _context.Tasks.ToListAsync();
+            //Return status code with the list
             return Ok(tasks);
         }
 
@@ -74,7 +75,7 @@ namespace To_do_List_API.Controllers
 
             //Use addList function to add new content as new list
             _context.Tasks.Add(newTask);
-
+            //await this method to save all the changes before return
             await _context.SaveChangesAsync();
 
             //Return it with the name of the list, the id of new list and the content

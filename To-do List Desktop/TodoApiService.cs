@@ -12,11 +12,11 @@ namespace To_do_List_Desktop
     internal class TodoApiService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://localhost:7089";//Need to replace with your url
+        private const string BaseUrl = "https://localhost:7089";//Need to replace with your project's url
 
         public TodoApiService()
         {
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient();//Define and assign a httpClient object to send and receive HTTP responses
         }
 
         public async Task<List<TaskItem>> GetAllTasksAsync()
